@@ -26,20 +26,21 @@ public abstract class Wildlife {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Wildlife wildlife = (Wildlife) o;
-        return id == wildlife.id &&
-                Objects.equals(name, wildlife.name);
+        return Objects.equals(name, wildlife.name) &&
+                Objects.equals(type, wildlife.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(name, type);
     }
 
     public void save(){
         try (Connection con = DB.sql2o.open()){
-            String sql = "INSERT INTO animals(name) VALUES(:name)";
+            String sql = "INSERT INTO animals(name, type) VALUES(:name,:type)";
            this.id = (int) con.createQuery(sql, true)
-                    .addParameter("name",this.name)
+                   .addParameter("name",this.name)
+                   .addParameter("type",this.type)
                     .executeUpdate()
                     .getKey();
         }

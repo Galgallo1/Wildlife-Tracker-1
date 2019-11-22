@@ -1,15 +1,21 @@
 package models;
 
+import org.sql2o.Connection;
+
+import java.text.DateFormat;
+import java.util.List;
+import java.util.Objects;
+
 public class Sightings {
     private int id;
     private String location;
-    private String rangerName;
-    private int wildlifeId;
+    private String ranger_name;
+    private int wildlife_id;
 
-    public Sightings(String location, String rangerName, int wildlifeId) {
+    public Sightings(String location, String ranger_name, int wildlife_id) {
         this.location = location;
-        this.rangerName = rangerName;
-        this.wildlifeId = wildlifeId;
+        this.ranger_name = ranger_name;
+        this.wildlife_id = wildlife_id;
     }
 
     public int getId() {
@@ -21,10 +27,45 @@ public class Sightings {
     }
 
     public String getRangerName() {
-        return rangerName;
+        return ranger_name;
     }
 
     public int getWildlifeId() {
-        return wildlifeId;
+        return wildlife_id;
+    }
+
+    public void save(){
+        try(Connection con = DB.sql2o.open()){
+            String sql = "INSERT INTO sightings(location, ranger_name, wildlife_id) VALUES(:location,:ranger_name,:wildlife_id)";
+           this.id =(int) con.createQuery(sql,true)
+                    .addParameter("location",this.location)
+                    .addParameter("ranger_name",this.ranger_name)
+                    .addParameter("wildlife_id", this.wildlife_id)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+    public static List<Sightings> all(){
+        String querySightings = "SELECT * FROM sightings";
+        try (Connection con =DB.sql2o.open()){
+            return con.createQuery(querySightings)
+                    .executeAndFetch(Sightings.class);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sightings sightings = (Sightings) o;
+        return wildlife_id == sightings.wildlife_id &&
+                Objects.equals(location, sightings.location) &&
+                Objects.equals(ranger_name, sightings.ranger_name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(location, ranger_name, wildlife_id);
     }
 }
