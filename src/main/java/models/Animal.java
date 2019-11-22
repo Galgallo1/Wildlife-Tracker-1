@@ -1,5 +1,5 @@
 package models;
 
-public class Animal {
+public class Animal extends Wildlife {
 
 }
