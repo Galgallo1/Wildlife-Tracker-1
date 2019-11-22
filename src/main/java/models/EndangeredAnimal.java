@@ -1,5 +1,6 @@
 package models;
 
+
 public class EndangeredAnimal extends Wildlife {
 
     public static final String HEALTHY ="healthy";
@@ -9,5 +10,10 @@ public class EndangeredAnimal extends Wildlife {
     public static final String YOUNG ="young";
     public static final String ADULT ="adult";
 
+    public static final String DATABASE_TYPE = "endangered animal";
 
+    public EndangeredAnimal(String name) {
+        this.name = name;
+        this.type = DATABASE_TYPE;
+    }
 }
