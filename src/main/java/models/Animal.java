@@ -16,6 +16,7 @@ public class Animal extends Wildlife {
         try (Connection con = DB.sql2o.open()){
             String queryAnimals ="SELECT * FROM animals WHERE type='animal'";
             return con.createQuery(queryAnimals)
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(Animal.class);
 
         }
