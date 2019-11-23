@@ -7,6 +7,7 @@ import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -56,10 +57,22 @@ public class App {
             }
             Sightings sightings = new Sightings(location,ranger, animalId);
             sightings.save();
-            response.redirect("/wildlife/new");
+            response.redirect("/all-animals");
             return null;
         }, new HandlebarsTemplateEngine());
 
-//        get("all-animals", (request, response) -> {}, );
+        get("all-animals", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Animal>animals = Animal.all();
+            List<EndangeredAnimal> endangeredAnimals = EndangeredAnimal.all();
+            model.put("animals", animals);
+            model.put("endangeredAnimals", endangeredAnimals);
+            return new ModelAndView(model, "all-animals.hbs");
+        }, new HandlebarsTemplateEngine() );
+
+        get("/sightings",(request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "sightings.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }
