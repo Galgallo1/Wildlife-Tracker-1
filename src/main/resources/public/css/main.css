@@ -28,19 +28,27 @@ nav{
 }
 .track{
     background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("https://cdn.pixabay.com/photo/2014/11/03/11/07/lion-515028_1280.jpg");
-    height: 45vh;
+    height: 55vh;
     background-size: cover;
     background-position-x: center;
     background-position-y: center ;
 }
 .track h1{
-    padding-top: 70px;
+    padding-top: 45px;
     color: #ffffff;
 }
 .tracker-form{
     width: 50%;
     margin: auto;
-    padding-top: 40px;
+    padding-top: 30px;
+}
+nav li a{
+   color: #ffffff;
+    font-size: 20px;
+}
+li a:hover{
+    border-bottom: 2px solid green;
+    color: green;
 }
 
 @media only screen and (max-width: 500px){
