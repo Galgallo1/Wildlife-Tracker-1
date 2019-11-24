@@ -1,12 +1,14 @@
 {{#partial "content"}}
     {{#if animals}}
-        <h2>Common animals</h2>
+        <h2 class="text-center">Common animals</h2>
             <div class="container">
                 <div class="row">
                     {{#each animals}}
                     <div class="col-md-4">
                         <div class="card p-4 mt-2">
                             <h3>{{name}}</h3>
+                            <p>{{type}}</p>
+                            <p>{{location}}</p>
                         </div>
                     </div>
                     {{/each}}
@@ -17,13 +19,16 @@
         <h1 class="text-center">No animal to track.</h1>
     {{/if}}
     {{#if endangeredAnimals}}
-        <h2>Endangered animals</h2>
+        <h2 class="text-center">Endangered animals</h2>
             <div class="container">
                 <div class="row">
-                    {{#each endangeredanimals}}
+                    {{#each endangeredAnimals}}
                         <div class="col-md-4">
                             <div class="card p-4 mt-2">
                                 <h3>{{name}}</h3>
+                                <p>{{type}}</p>
+                                <p>{{age}}</p>
+                                <p>{{health}}</p>
                             </div>
                         </div>
                     {{/each}}

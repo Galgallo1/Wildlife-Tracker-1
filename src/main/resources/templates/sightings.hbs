@@ -1,0 +1,11 @@
+{{#partial "content"}}
+    <h1>Sightings</h1>
+    {{#if  sightings}}
+        {{#each sightings}}
+            <h4>{{rangerName}}</h4>
+        {{/each}}
+        {{else}}
+        <h2>No sightings so far</h2>
+    {{/if}}
+{{/partial}}
+{{>layout.hbs}}
