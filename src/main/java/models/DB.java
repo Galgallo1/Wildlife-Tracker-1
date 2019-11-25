@@ -29,5 +29,4 @@ public class DB {
             logger.error("Unable to connect to database.");
         }
     }
-//    public static Sql2o sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker","moringa","victor8450");
 }
