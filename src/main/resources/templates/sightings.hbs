@@ -19,19 +19,19 @@
             <table class="table table-hover table-dark">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Ranger's name</th>
                     <th scope="col">Location</th>
                     <th scope="col">Animal's ID</th>
+                    <th scope="col">Time Tracked</th>
                 </tr>
                 </thead>
                 <tbody>
             {{#each sightings}}
                 <tr>
-                    <th scope="row">1</th>
                     <td>{{rangerName}}</td>
                     <td>{{location}}</td>
                     <td>{{wildlifeId}}</td>
+                    <td>{{time}}</td>
                 </tr>
             {{/each}}
                 </tbody>
